@@ -1,8 +1,8 @@
 <template>
 
   <section class="score">
-    Jogador <span>{{ this.win_count }}</span> x 
-   <span>{{ this.lose_count }}</span> Computador
+    Player <span>{{ this.win_count }}</span> x 
+   <span>{{ this.lose_count }}</span> Computer
   </section>
 
   <template v-if="this.question">
@@ -14,12 +14,12 @@
         :disabled="this.answerSubmitted" 
         type="radio" name="options" 
         :value="answer" 
-        v-model="this.chosen_answer">
+        v-model="this.chosen_answer"> 
         
       <label v-html="answer"></label><br>
     </template>
 
-    <button v-if="!this.answerSubmitted" @click="this.submitAnswer()" class="send" type="button">Confirmar</button>
+    <button v-if="!this.answerSubmitted" @click="this.submitAnswer()" class="send" type="button">Send</button>
 
   </template>
   
@@ -27,12 +27,12 @@
   
   <section class="result" v-if="this.answerSubmitted">
     <template v-if="this.chosen_answer == this.correctAnswer">
-      <h4>&#9989; Parabéns, a resposta "{{this.correctAnswer}}" está correta.</h4>
+      <h4>&#9989; Congrats, "{{this.correctAnswer}}" it's right.</h4>
     </template>
     <template v-else>
-      <h4>&#10060;  Que pena, a resposta está errada. A resposta correta é "{{this.correctAnswer}}".</h4>
+      <h4>&#10060;  Oops, it's incorrect. The right answer is "{{this.correctAnswer}}".</h4>
     </template>
-    <button @click="this.getNewQuestion()" class="send" type="button">Próxima pergunta</button>
+    <button @click="this.getNewQuestion()" class="send" type="button">Next question</button>
   </section>
 
 </template>
@@ -62,7 +62,7 @@ computed: {
 methods: {
   submitAnswer() {
     if (!this.chosen_answer) {
-      alert('Pick one of the options');
+      alert('Choose at least one of options..');
     } else {
       this.answerSubmitted = true;
       if (this.chosen_answer == this.correctAnswer) {
